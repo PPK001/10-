@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafe Badilico</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+    }
+    .card {
+      max-width: 374px;
+      margin: 20px auto;
+    }
+    .progress {
+      height: 10px;
+      background-color: #7e57c2;
+    }
+    .rating {
+      display: flex;
+      align-items: center;
+    }
+    .rating i {
+      color: #ffca28;
+    }
+    .rating .grey-text {
+      margin-left: 10px;
+      color: #9e9e9e;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      margin: 15px 0;
+    }
+    .divider {
+      margin: 0 20px;
+    }
+    .chip-group {
+      display: flex;
+      flex-direction: column;
+      margin: 10px 0;
+    }
+    .chip-group .chip {
+      margin: 5px 0;
+    }
+    .chip.active {
+      background-color: #7e57c2;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="progress indeterminate"></div>
+    <div class="card-image">
+      <img src="https://cdn.vuetifyjs.com/images/cards/cooking.png" alt="Cafe Badilico">
+    </div>
+    <div class="card-content">
+      <span class="card-title">Cafe Badilico</span>
+      <div class="rating">
+        <div>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+        <div class="grey-text">4.5 (413)</div>
+      </div>
+      <div class="subtitle">$ • Italian, Cafe</div>
+      <div>Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.</div>
+    </div>
+    <div class="divider"></div>
+    <div class="card-content">
+      <span class="card-title">Tonight's availability</span>
+      <div class="chip-group">
+        <div class="chip">5:30PM</div>
+        <div class="chip">7:30PM</div>
+        <div class="chip">8:00PM</div>
+        <div class="chip">9:00PM</div>
+      </div>
+    </div>
+    <div class="card-action">
+      <button class="btn deep-purple lighten-2" onclick="reserve()">Reserve</button>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.chip-group .chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.chip-group .chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      });
+    });
+
+    function reserve() {
+      const selectedChip = document.querySelector('.chip-group .chip.active');
+      if (selectedChip) {
+        alert(`Reserved for ${selectedChip.textContent}`);
+      } else {
+        alert('Please select a time slot.');
+      }
+    }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

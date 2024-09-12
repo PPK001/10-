@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าเว็บตัวอย่าง</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #33a7d1;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #e0e0e0;
+        }
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .carousel {
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .carousel-inner img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            width: 100%;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #ddd;
+        }
+        /* Slider CSS */
+        .slider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 30px;
+            padding: 10px 0;
+        }
+        .slider-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: calc(350px * 6 + 30px); /* ความกว้างรวมของการ์ด + margin */
+        }
+        .course-card {
+            flex: 0 0 auto;
+            width: 350px;
+            height: 300px; /* ปรับความสูงให้เหมาะสม */
+            margin: 0 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .course-card img {
+            width: 100%;
+            height: 200px; /* ความสูงของรูปภาพ */
+            object-fit: cover;
+        }
+        .course-title {
+            padding: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            background-color: #f8f8f8; /* เพิ่มพื้นหลังเพื่อให้ตัวหนังสือเด่น */
+            border-bottom: 1px solid #ddd;
+        }
+        .course-info {
+            padding: 10px;
+            background-color: #fff;
+        }
+        .course-id,
+        .category,
+        .students {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .course-id {
+            font-weight: bold;
+        }
+        .category {
+            font-style: italic;
+        }
+        .students {
+            color: #4CAF50; /* ใช้สีเขียวเพื่อเน้นข้อความ */
+        }
+        .course-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+        }
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease;
+        }
+        .slider-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .left {
+            left: 10px;
+        }
+        .right {
+            right: 10px;
+        }
+        .img-container {
+            text-align: center; /* Center the image container */
+            margin-bottom: 20px; /* Add some margin below the image if needed */
+        }
+
+        .img-fluid {
+            max-width: 100%; /* Ensure the image scales properly */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .text-center {
+            text-align: center; /* Center text horizontally */
+        }
+
+        .text-center h1 {
+            margin: 0; /* Remove default margin */
+            font-size: 3em; /* Adjust font size if necessary */
+        }
+        /* Flower decoration */
+        .flower-decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80%;
+            height: 80%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .flower-decoration img {
+            position: absolute;
+            width: 80px;
+            height: auto;
+            animation: float 10s linear infinite;
+        }
+        .flower-decoration img:nth-child(1) {
+            top: 10%;
+            left: 15%;
+            animation-duration: 12s;
+        }
+        .flower-decoration img:nth-child(2) {
+            top: 20%;
+            left: 30%;
+            animation-duration: 14s;
+        }
+        .flower-decoration img:nth-child(3) {
+            top: 30%;
+            left: 50%;
+            animation-duration: 16s;
+        }
+        .flower-decoration img:nth-child(4) {
+            top: 40%;
+            left: 70%;
+            animation-duration: 18s;
+        }
+        .flower-decoration img:nth-child(5) {
+            top: 50%;
+            left: 90%;
+            animation-duration: 20s;
+        }
+        .flower-decoration img:nth-child(6) {
+            top: 60%;
+            left: 110%;
+            animation-duration: 22s;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="flower-decoration">
+        <img src="img/LINE1.png" alt="Flower 1">
+        <img src="img/Facebook1.png" alt="Flower 2">
+        <img src="img/Google1.png" alt="Flower 3">
+        <img src="img/ppt.png" alt="Flower 4">
+        <img src="img/apple1.png" alt="Flower 4">
+        <img src="img/scg1.png" alt="Flower 4">
+    </div>
+
+    <header>
+        <h1>Topบริษัทในฝัน</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="conn.html">ติดต่อเรา</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>
+        
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/Nikkation.jpg" alt="Image 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/Nikkation (1).jpg" alt="Image 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/Nikkation (2).jpg" alt="Image 3">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/10 (1).jpg" alt="Image 4">
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="slider">
+
+                <h1>10บริษัทดังนี้</h1>
+
+            <br>
+
+                <button class="slider-button left" onclick="slideLeft()">❮</button>
+                <button class="slider-button right" onclick="slideRight()">❯</button>
+
+                <div class="slider-container" id="courseContainer">
+                    <a href="https://about.google/?hl=th" class="course-card">
+                        <img src="img/google-new-logo-01.jpg" alt="Course Image">
+                        <div class="course-title">google</div>
+                        <div class="course-info">
+                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
+                            <div class="category"></div>
+                        </div>
+                    </a>
+
+                    <a href="https://linecorp.com/th/" class="course-card">
+                        <img src="img/appicon_01_f9ed1cf01f.jpeg" alt="Course Image">
+                        <div class="course-title">Line</div>
+                        <div class="course-info">
+                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
+                            <div class="category"></div>
+                        </div>
+                    </a>
+
+                    <a href="https://www.scg.com/landing/" class="course-card">
+                        <img src="img/siam-cement-group-scg-logo-vector.jpg" alt="Course Image">
+                        <div class="course-title">SCG</div>
+                        <div class="course-info">
+                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
+                            <div class="category"></div>
+                        </div>
+                    </a>
+
+                    <a href="https://www.pttplc.com/th/Index.aspx" class="course-card">
+                        <img src="img/logo_PTT_3.jpg" alt="Course Image">
+                        <div class="course-title">PTT</div>
+                        <div class="course-info">
+                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
+                            <div class="category"></div>
+                        </div>
+                    </a>
+
+                    <a href="https://www.apple.com/th/" class="course-card">
+                        <img src="img/image-app-1024x512.jpg" alt="Course Image">
+                        <div class="course-title">Apple</div>
+                        <div class="course-info">
+                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
+                            <div class="category"></div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.agoda.com/th-th/about-agoda/a-truly-global-company/" class="course-card">
+                        <img src="img/Agoda_transparent_logo.jpg" alt="Course Image">
+                        <div class="course-title">Agoda</div>
+                        <div class="course-info">
+                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
+                            <div class="category"></div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.mitrphol.com/home" class="course-card">
+                        <img src="img/800_c8ff6423e36fbf2.jpg" alt="Course Image">
+                        <div class="course-title">Mitr phol</div>
+                        <div class="course-info">
+                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
+                            <div class="category"></div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.toyota.co.th/career/company" class="course-card">
+                        <img src="img/Logo_Toyota.svg.png" alt="Course Image">
+                        <div class="course-title">Toyota</div>
+                        <div class="course-info">
+                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
+                            <div class="category"></div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.thaibev.com/home" class="course-card">
+                        <img src="img/348327000_266372495893169_2121328230365348016_n.jpg" alt="Course Image">
+                        <div class="course-title">Thaibev</div>
+                        <div class="course-info">
+                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
+                            <div class="category"></div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://investor.bjc.co.th/th/corporate-information/companys-business" class="course-card">
+                        <img src="img/ดีไซน์ที่ยังไม่ได้ตั้งชื่อ.jpg" alt="Course Image">
+                        <div class="course-title">BJC</div>
+                        <div class="course-info">
+                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
+                            <div class="category"></div>
+                        </div>
+                    </a>
+
+
+                    <a href="https://mooc.chula.ac.th/course-detail/153" class="course-card">
+                        <img src="https://via.placeholder.com/350x200" alt="Course Image">
+                        <div class="course-title">Python for Web Development</div>
+                        <div class="course-info">
+                            <div class="course-id">CHULAMOOC2888</div>
+                            <div class="category">เทคโนโลยี</div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    
+    </main>
+    
+    <footer>
+        <p>© 2024 เว็บไซต์ของเราสงวนสิทธิ์ by PPK.</p>
+    </footer>
+
+    <script>
+        let currentIndex = 0;
+        const sliderContainer = document.getElementById('courseContainer');
+        let visibleCards = Math.floor(window.innerWidth / (350 + 30)); // Update initial visibleCards
+        let autoSlideInterval;
+
+        function slideLeft() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            }
+        }
+
+        function slideRight() {
+            if (currentIndex < sliderContainer.children.length - visibleCards) {
+                currentIndex++;
+                updateSlider();
+            }
+        }
+
+        function updateSlider() {
+            const offset = -currentIndex * (350 + 30); // Card width + margin
+            sliderContainer.style.transform = `translateX(${offset}px)`;
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                slideRight();
+                if (currentIndex >= sliderContainer.children.length - visibleCards) {
+                    currentIndex = 0;
+                    updateSlider();
+                }
+            }, 3000); // Change slide every 3 seconds
+        }
+
+        window.addEventListener('resize', () => {
+            visibleCards = Math.floor(window.innerWidth / (350 + 30));
+            updateSlider();
+        });
+
+        // Start auto slide when page loads
+        startAutoSlide();
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
