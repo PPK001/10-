@@ -1,459 +1,528 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>หน้าเว็บตัวอย่าง</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">    
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        header {
-            background-color: #33a7d1;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            font-weight: 700;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 10px 0 0 0;
-            text-align: center;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2em;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        nav ul li a:hover {
-            color: #e0e0e0;
-        }
-        main {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 20px auto;
-            background: white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        .carousel {
-            position: relative;
-            margin: auto;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .carousel-inner img {
-            width: 100%;
-            border-radius: 8px;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-            width: 100%;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
-        }
-        footer p {
-            margin: 0;
-            font-size: 0.9em;
-            color: #ddd;
-        }
-        /* Slider CSS */
-        .slider {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            margin-top: 30px;
-            padding: 10px 0;
-        }
-        .slider-container {
-            display: flex;
-            transition: transform 0.5s ease;
-            width: calc(350px * 6 + 30px); /* ความกว้างรวมของการ์ด + margin */
-        }
-        .course-card {
-            flex: 0 0 auto;
-            width: 350px;
-            height: 300px; /* ปรับความสูงให้เหมาะสม */
-            margin: 0 15px;
-            border-radius: 8px;
-            overflow: hidden;
-            text-align: center;
-            background-color: #fff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .course-card img {
-            width: 100%;
-            height: 200px; /* ความสูงของรูปภาพ */
-            object-fit: cover;
-        }
-        .course-title {
-            padding: 10px;
-            font-size: 18px;
-            font-weight: 700;
-            color: #333;
-            background-color: #f8f8f8; /* เพิ่มพื้นหลังเพื่อให้ตัวหนังสือเด่น */
-            border-bottom: 1px solid #ddd;
-        }
-        .course-info {
-            padding: 10px;
-            background-color: #fff;
-        }
-        .course-id,
-        .category,
-        .students {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 5px;
-        }
-        .course-id {
-            font-weight: bold;
-        }
-        .category {
-            font-style: italic;
-        }
-        .students {
-            color: #4CAF50; /* ใช้สีเขียวเพื่อเน้นข้อความ */
-        }
-        .course-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
-        }
-        .slider-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 15px;
-            cursor: pointer;
-            z-index: 10;
-            border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: background 0.3s ease;
-        }
-        .slider-button:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-        .left {
-            left: 10px;
-        }
-        .right {
-            right: 10px;
-        }
-        .img-container {
-            text-align: center; /* Center the image container */
-            margin-bottom: 20px; /* Add some margin below the image if needed */
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>จองคอร์ด · สุ่มทีมแบดมินตัน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800;900&family=Sarabun:wght@400;500;600;700&family=Bai+Jamjuree:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --court-deep: #073942;
+    --court: #0B5563;
+    --boundary: #D64550;
+    --boundary-dark: #B2333D;
+    --line: #F5F7F2;
+    --ink: #0F2429;
+    --amber: #F2B705;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--court-deep);
+    font-family: 'Sarabun', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+  .font-display { font-family: 'Kanit', sans-serif; }
 
-        .img-fluid {
-            max-width: 100%; /* Ensure the image scales properly */
-            height: auto; /* Maintain aspect ratio */
-        }
+  .backdrop { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+  .backdrop .frame { position: absolute; inset: 1.5rem; border: 2px solid var(--line); opacity: 0.07; border-radius: 2px; }
+  .backdrop .net { position: absolute; left: 1.5rem; right: 1.5rem; top: 50%; border-top: 2px dashed var(--line); opacity: 0.09; }
+  @media (min-width: 640px) {
+    .backdrop .frame { inset: 2.5rem; }
+    .backdrop .net { left: 2.5rem; right: 2.5rem; }
+  }
 
-        .text-center {
-            text-align: center; /* Center text horizontally */
-        }
+  .wrap { position: relative; z-index: 1; max-width: 36rem; margin: 0 auto; padding: 0 1rem 4rem; }
 
-        .text-center h1 {
-            margin: 0; /* Remove default margin */
-            font-size: 3em; /* Adjust font size if necessary */
-        }
-        /* Flower decoration */
-        .flower-decoration {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 80%;
-            height: 80%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .flower-decoration img {
-            position: absolute;
-            width: 80px;
-            height: auto;
-            animation: float 10s linear infinite;
-        }
-        .flower-decoration img:nth-child(1) {
-            top: 10%;
-            left: 15%;
-            animation-duration: 12s;
-        }
-        .flower-decoration img:nth-child(2) {
-            top: 20%;
-            left: 30%;
-            animation-duration: 14s;
-        }
-        .flower-decoration img:nth-child(3) {
-            top: 30%;
-            left: 50%;
-            animation-duration: 16s;
-        }
-        .flower-decoration img:nth-child(4) {
-            top: 40%;
-            left: 70%;
-            animation-duration: 18s;
-        }
-        .flower-decoration img:nth-child(5) {
-            top: 50%;
-            left: 90%;
-            animation-duration: 20s;
-        }
-        .flower-decoration img:nth-child(6) {
-            top: 60%;
-            left: 110%;
-            animation-duration: 22s;
-        }
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(100vh) rotate(360deg); }
-        }
+  header { text-align: center; padding: 2.5rem 0 2rem; }
+  .eyebrow {
+    display: inline-block;
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--line);
+    border: 1px solid rgba(245,247,242,0.3);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    opacity: 0.85;
+  }
+  h1 {
+    margin: 1rem 0 0;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 900;
+    font-size: 2.25rem;
+    letter-spacing: -0.02em;
+    color: var(--line);
+  }
+  header p { margin: 0.5rem 0 0; font-size: 1rem; color: rgba(245,247,242,0.75); }
+  @media (min-width: 640px) {
+    header { padding: 3.5rem 0 2.5rem; }
+    h1 { font-size: 3.75rem; }
+    header p { font-size: 1.125rem; }
+  }
 
-    </style>
+  .stack { display: flex; flex-direction: column; gap: 1rem; }
+
+  .card { background: var(--line); border-radius: 1rem; padding: 1.25rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+  @media (min-width: 640px) { .card { padding: 1.5rem; } }
+  .card h2 { margin: 0; font-family: 'Kanit', sans-serif; font-size: 1.125rem; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 0.5rem; }
+
+  .field-label { font-size: 0.875rem; font-weight: 600; margin: 1rem 0 0.5rem; color: var(--ink); }
+
+  .toggle-row { display: flex; gap: 0.5rem; }
+  .toggle-btn {
+    flex: 1; font-family: 'Kanit', sans-serif; font-weight: 600; font-size: 0.95rem;
+    padding: 0.6rem 0; border-radius: 9999px; border: 2px solid var(--court);
+    background: transparent; color: var(--ink); cursor: pointer; transition: opacity .15s, transform .1s;
+  }
+  .toggle-btn:hover { opacity: 0.9; }
+  .toggle-btn:active { transform: scale(0.96); }
+  .toggle-btn.active { background: var(--court); color: var(--line); }
+
+  .stepper { display: flex; align-items: center; gap: 0.75rem; }
+  .step-btn {
+    width: 2.75rem; height: 2.75rem; border-radius: 9999px; border: none;
+    background: var(--court-deep); color: var(--line);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+  }
+  .step-btn:hover { opacity: 0.9; }
+  .step-btn:active { transform: scale(0.95); }
+  .step-value { font-family: 'Bai Jamjuree', sans-serif; font-size: 1.5rem; font-weight: 700; width: 2.5rem; text-align: center; }
+
+  .card-header-row { display: flex; align-items: center; justify-content: space-between; }
+  .clear-btn {
+    font-family: 'Sarabun', sans-serif; font-size: 0.75rem; display: none; align-items: center; gap: 0.25rem;
+    background: none; border: none; cursor: pointer; opacity: 0.7; color: var(--boundary-dark);
+  }
+  .clear-btn:hover { opacity: 1; }
+
+  .input-row { display: flex; gap: 0.5rem; margin-top: 1rem; }
+  #nameInput {
+    flex: 1; min-width: 0; padding: 0.6rem 1rem; border-radius: 9999px;
+    border: 2px solid var(--court); font-family: 'Sarabun', sans-serif; font-size: 1rem;
+    color: var(--ink); background: #fff;
+  }
+  #nameInput:focus { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .add-btn {
+    width: 2.75rem; height: 2.75rem; flex-shrink: 0; border-radius: 9999px; border: none;
+    background: var(--court); color: var(--line); display: flex; align-items: center; justify-content: center; cursor: pointer;
+  }
+  .add-btn:hover { opacity: 0.9; }
+  .add-btn:active { transform: scale(0.95); }
+
+  .hint-text { font-size: 0.75rem; margin: 0.4rem 0 0; opacity: 0.6; }
+  .empty-text { font-size: 0.875rem; text-align: center; padding: 1rem 0; opacity: 0.6; margin: 1.25rem 0 0; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .chip { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.4rem 0.4rem 0.75rem; border-radius: 9999px; background: var(--court-deep); color: var(--line); font-size: 0.875rem; }
+  .chip .idx { font-family: 'Bai Jamjuree', sans-serif; opacity: 0.6; font-size: 0.75rem; }
+  .chip-remove { width: 1.25rem; height: 1.25rem; border-radius: 9999px; border: none; background: transparent; color: var(--line); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .chip-remove:hover { background: rgba(255,255,255,0.2); }
+
+  .count-row { display: flex; justify-content: space-between; font-size: 0.75rem; margin-top: 1rem; opacity: 0.7; }
+
+  .cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 0.25rem; }
+  .cta-btn {
+    width: 100%; padding: 1rem 0; border-radius: 9999px; border: none; background: var(--boundary); color: var(--line);
+    font-family: 'Kanit', sans-serif; font-weight: 700; font-size: 1.125rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25); cursor: pointer;
+  }
+  .cta-btn:hover:not(:disabled) { opacity: 0.9; }
+  .cta-btn:active:not(:disabled) { transform: scale(0.98); }
+  .cta-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .hint { font-size: 0.875rem; text-align: center; color: rgba(245,247,242,0.75); margin: 0; display: none; }
+
+  @keyframes shuttleToss {
+    0% { transform: translateY(0) rotate(0deg) scale(1); }
+    22% { transform: translateY(-46px) rotate(160deg) scale(1.08); }
+    50% { transform: translateY(-64px) rotate(340deg) scale(1.14); }
+    78% { transform: translateY(-28px) rotate(560deg) scale(1.05); }
+    100% { transform: translateY(0) rotate(720deg) scale(1); }
+  }
+  .shuttle-toss { animation: shuttleToss 0.9s cubic-bezier(0.34, 1.2, 0.4, 1) both; }
+
+  @keyframes cardIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .card-in { animation: cardIn 0.45s ease both; }
+
+  @media (prefers-reduced-motion: reduce) { .shuttle-toss, .card-in { animation: none !important; } }
+
+  .results-header { display: flex; align-items: center; justify-content: space-between; margin: 1.5rem 0 0.75rem; }
+  .results-header h2 { margin: 0; font-family: 'Kanit', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--line); }
+  .rerandom-btn {
+    font-family: 'Sarabun', sans-serif; font-size: 0.875rem; display: flex; align-items: center; gap: 0.4rem;
+    padding: 0.4rem 0.75rem; border-radius: 9999px; background: none; border: 1px solid rgba(245,247,242,0.35);
+    color: var(--line); cursor: pointer;
+  }
+  .rerandom-btn:hover { opacity: 0.8; }
+
+  .court-card { background: var(--line); border-radius: 1rem; padding: 1.25rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 0.75rem; }
+  .court-label { font-family: 'Bai Jamjuree', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--boundary-dark); margin-bottom: 0.75rem; }
+  .match-row { display: flex; align-items: center; gap: 0.75rem; }
+  .team { flex: 1; text-align: center; }
+  .team div { font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+  .vs-badge { font-family: 'Kanit', sans-serif; font-size: 0.75rem; font-weight: 700; width: 2rem; height: 2rem; flex-shrink: 0; border-radius: 9999px; background: var(--boundary); color: var(--line); display: flex; align-items: center; justify-content: center; }
+
+  .queue-box { margin-top: 0.25rem; background: rgba(245,247,242,0.08); border-radius: 1rem; padding: 1rem; display: none; }
+  .queue-title { font-family: 'Sarabun', sans-serif; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.5rem; color: rgba(245,247,242,0.8); }
+  .queue-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .queue-chip { font-size: 0.875rem; padding: 0.3rem 0.75rem; border-radius: 9999px; background: var(--amber); color: var(--ink); }
+
+  button:focus-visible, input:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+</style>
 </head>
 <body>
 
-    <div class="flower-decoration">
-        <img src="img/LINE1.png" alt="Flower 1">
-        <img src="img/Facebook1.png" alt="Flower 2">
-        <img src="img/Google1.png" alt="Flower 3">
-        <img src="img/ppt.png" alt="Flower 4">
-        <img src="img/apple1.png" alt="Flower 4">
-        <img src="img/scg1.png" alt="Flower 4">
+<div class="backdrop" aria-hidden="true">
+  <div class="frame"></div>
+  <div class="net"></div>
+</div>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">จัดทีมให้เอง ไม่ต้องเดา</span>
+    <h1>จองคอร์ด</h1>
+    <p>ใส่รายชื่อผู้เล่น แล้วสุ่มทีมแบดมินตันได้ทั้งเดี่ยวและคู่</p>
+  </header>
+
+  <div class="stack">
+    <!-- setup card -->
+    <section class="card card-in">
+      <h2>ตั้งค่าการแข่งขัน</h2>
+
+      <div class="field-label">รูปแบบการเล่น</div>
+      <div class="toggle-row">
+        <button type="button" id="modeSingleBtn" class="toggle-btn">เดี่ยว</button>
+        <button type="button" id="modeDoubleBtn" class="toggle-btn active">คู่</button>
+      </div>
+
+      <div class="field-label">จำนวนคอร์ด</div>
+      <div class="stepper">
+        <button type="button" id="courtMinusBtn" class="step-btn" aria-label="ลดจำนวนคอร์ด">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <span id="courtCountLabel" class="step-value">2</span>
+        <button type="button" id="courtPlusBtn" class="step-btn" aria-label="เพิ่มจำนวนคอร์ด">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- players card -->
+    <section class="card card-in" style="animation-delay:60ms">
+      <div class="card-header-row">
+        <h2>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          รายชื่อผู้เล่น
+        </h2>
+        <button type="button" id="clearAllBtn" class="clear-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+          ล้างรายชื่อ
+        </button>
+      </div>
+
+      <div class="input-row">
+        <input id="nameInput" type="text" placeholder="พิมพ์ชื่อผู้เล่น เช่น กอล์ฟ, มิว, เบียร์" aria-label="ชื่อผู้เล่น">
+        <button type="button" id="addBtn" class="add-btn" aria-label="เพิ่มผู้เล่น">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+      </div>
+      <p class="hint-text">พิมพ์หลายชื่อพร้อมกันได้ คั่นด้วยจุลภาค</p>
+
+      <p id="emptyText" class="empty-text">ยังไม่มีผู้เล่น เริ่มเพิ่มชื่อได้เลย</p>
+      <div id="chips" class="chips"></div>
+
+      <div class="count-row">
+        <span id="playerCount">ผู้เล่นทั้งหมด 0 คน</span>
+        <span id="modeHint">โหมดคู่ · ต้องการ 4 คน/คอร์ด</span>
+      </div>
+    </section>
+
+    <!-- randomize CTA -->
+    <div class="cta-wrap">
+      <button type="button" id="randomizeBtn" class="cta-btn" disabled>
+        <svg id="shuttleIcon" width="24" height="24" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="50" cy="122" rx="15" ry="13" fill="currentColor"/>
+          <path d="M50 122 L50 104" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M50 104 L16 22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M50 104 L36 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M50 104 L50 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M50 104 L64 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M50 104 L84 22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <ellipse cx="50" cy="18" rx="36" ry="7" stroke="currentColor" stroke-width="2" opacity="0.55"/>
+        </svg>
+        <span id="ctaLabel">สุ่มทีม</span>
+      </button>
+      <p id="hintText" class="hint"></p>
     </div>
 
-    <header>
-        <h1>Topบริษัทในฝัน</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">หน้าแรก</a></li>
-                <li><a href="conn.html">ติดต่อเรา</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
-
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-            </ol>
-        
-            <!-- Carousel items -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="img/Nikkation.jpg" alt="Image 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/Nikkation (1).jpg" alt="Image 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/Nikkation (2).jpg" alt="Image 3">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/10 (1).jpg" alt="Image 4">
-                </div>
-            </div>
+    <!-- results -->
+    <section id="resultsSection" hidden>
+      <div class="results-header">
+        <h2>ผลการจับคู่</h2>
+        <button type="button" id="reRandomizeBtn" class="rerandom-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          สุ่มใหม่
+        </button>
+      </div>
+      <div id="resultsList"></div>
+      <div id="queueSection" class="queue-box">
+        <div class="queue-title">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          รอคิวรอบถัดไป
         </div>
-        
-        <div class="container">
-            <div class="slider">
+        <div id="queueChips" class="queue-chips"></div>
+      </div>
+    </section>
+  </div>
+</div>
 
-                <h1>10บริษัทดังนี้</h1>
+<script>
+(function () {
+  let players = [];        // { id, name }
+  let mode = 'double';      // 'single' | 'double'
+  let courtCount = 2;
+  let result = null;        // { courts, queue }
+  let isShuffling = false;
 
-            <br>
+  const $ = (sel) => document.querySelector(sel);
 
-                <button class="slider-button left" onclick="slideLeft()">❮</button>
-                <button class="slider-button right" onclick="slideRight()">❯</button>
+  const nameInput = $('#nameInput');
+  const addBtn = $('#addBtn');
+  const clearAllBtn = $('#clearAllBtn');
+  const chipsEl = $('#chips');
+  const emptyText = $('#emptyText');
+  const playerCountEl = $('#playerCount');
+  const modeHintEl = $('#modeHint');
+  const modeSingleBtn = $('#modeSingleBtn');
+  const modeDoubleBtn = $('#modeDoubleBtn');
+  const courtMinusBtn = $('#courtMinusBtn');
+  const courtPlusBtn = $('#courtPlusBtn');
+  const courtCountEl = $('#courtCountLabel');
+  const randomizeBtn = $('#randomizeBtn');
+  const shuttleIcon = $('#shuttleIcon');
+  const ctaLabel = $('#ctaLabel');
+  const hintText = $('#hintText');
+  const resultsSection = $('#resultsSection');
+  const resultsList = $('#resultsList');
+  const reRandomizeBtn = $('#reRandomizeBtn');
+  const queueSection = $('#queueSection');
+  const queueChips = $('#queueChips');
 
-                <div class="slider-container" id="courseContainer">
-                    <a href="https://about.google/?hl=th" class="course-card">
-                        <img src="img/google-new-logo-01.jpg" alt="Course Image">
-                        <div class="course-title">google</div>
-                        <div class="course-info">
-                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
-                            <div class="category"></div>
-                        </div>
-                    </a>
+  function genId() {
+    return Date.now() + '-' + Math.random().toString(36).slice(2, 9);
+  }
 
-                    <a href="https://linecorp.com/th/" class="course-card">
-                        <img src="img/appicon_01_f9ed1cf01f.jpeg" alt="Course Image">
-                        <div class="course-title">Line</div>
-                        <div class="course-info">
-                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
-                            <div class="category"></div>
-                        </div>
-                    </a>
+  function shuffleArray(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
 
-                    <a href="https://www.scg.com/landing/" class="course-card">
-                        <img src="img/siam-cement-group-scg-logo-vector.jpg" alt="Course Image">
-                        <div class="course-title">SCG</div>
-                        <div class="course-info">
-                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
-                            <div class="category"></div>
-                        </div>
-                    </a>
+  function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[c]);
+  }
 
-                    <a href="https://www.pttplc.com/th/Index.aspx" class="course-card">
-                        <img src="img/logo_PTT_3.jpg" alt="Course Image">
-                        <div class="course-title">PTT</div>
-                        <div class="course-info">
-                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
-                            <div class="category"></div>
-                        </div>
-                    </a>
+  function derived() {
+    const playersPerTeam = mode === 'double' ? 2 : 1;
+    const playersPerMatch = playersPerTeam * 2;
+    const courtsPossible = Math.floor(players.length / playersPerMatch);
+    const needed = Math.max(0, playersPerMatch - players.length);
+    const modeLabel = mode === 'double' ? 'คู่' : 'เดี่ยว';
+    return { playersPerTeam, playersPerMatch, courtsPossible, needed, modeLabel };
+  }
 
-                    <a href="https://www.apple.com/th/" class="course-card">
-                        <img src="img/image-app-1024x512.jpg" alt="Course Image">
-                        <div class="course-title">Apple</div>
-                        <div class="course-info">
-                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
-                            <div class="category"></div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://www.agoda.com/th-th/about-agoda/a-truly-global-company/" class="course-card">
-                        <img src="img/Agoda_transparent_logo.jpg" alt="Course Image">
-                        <div class="course-title">Agoda</div>
-                        <div class="course-info">
-                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
-                            <div class="category"></div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://www.mitrphol.com/home" class="course-card">
-                        <img src="img/800_c8ff6423e36fbf2.jpg" alt="Course Image">
-                        <div class="course-title">Mitr phol</div>
-                        <div class="course-info">
-                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
-                            <div class="category"></div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://www.toyota.co.th/career/company" class="course-card">
-                        <img src="img/Logo_Toyota.svg.png" alt="Course Image">
-                        <div class="course-title">Toyota</div>
-                        <div class="course-info">
-                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
-                            <div class="category"></div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://www.thaibev.com/home" class="course-card">
-                        <img src="img/348327000_266372495893169_2121328230365348016_n.jpg" alt="Course Image">
-                        <div class="course-title">Thaibev</div>
-                        <div class="course-info">
-                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
-                            <div class="category"></div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://investor.bjc.co.th/th/corporate-information/companys-business" class="course-card">
-                        <img src="img/ดีไซน์ที่ยังไม่ได้ตั้งชื่อ.jpg" alt="Course Image">
-                        <div class="course-title">BJC</div>
-                        <div class="course-info">
-                            <div class="course-id">กดเพื่อดูเพิ่มเติม</div>
-                            <div class="category"></div>
-                        </div>
-                    </a>
+  function renderSetup() {
+    modeSingleBtn.classList.toggle('active', mode === 'single');
+    modeDoubleBtn.classList.toggle('active', mode === 'double');
+    courtCountEl.textContent = courtCount;
+  }
 
+  function renderPlayers() {
+    if (players.length === 0) {
+      chipsEl.innerHTML = '';
+      emptyText.style.display = 'block';
+      clearAllBtn.style.display = 'none';
+    } else {
+      emptyText.style.display = 'none';
+      clearAllBtn.style.display = 'flex';
+      chipsEl.innerHTML = players.map((p, i) => `
+        <span class="chip">
+          <span class="idx">${i + 1}</span>${escapeHtml(p.name)}
+          <button type="button" class="chip-remove" data-id="${p.id}" aria-label="ลบ ${escapeHtml(p.name)}">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </span>
+      `).join('');
+    }
+    const d = derived();
+    playerCountEl.textContent = `ผู้เล่นทั้งหมด ${players.length} คน`;
+    modeHintEl.textContent = `โหมด${d.modeLabel} · ต้องการ ${d.playersPerMatch} คน/คอร์ด`;
+  }
 
-                    <a href="https://mooc.chula.ac.th/course-detail/153" class="course-card">
-                        <img src="https://via.placeholder.com/350x200" alt="Course Image">
-                        <div class="course-title">Python for Web Development</div>
-                        <div class="course-info">
-                            <div class="course-id">CHULAMOOC2888</div>
-                            <div class="category">เทคโนโลยี</div>
-                        </div>
-                    </a>
-                </div>
+  function renderCTA() {
+    const d = derived();
+    const canRandomize = d.courtsPossible > 0 && !isShuffling;
+    randomizeBtn.disabled = !canRandomize;
+    ctaLabel.textContent = isShuffling ? 'กำลังสุ่ม...' : (result ? 'สุ่มใหม่' : 'สุ่มทีม');
 
-            </div>
+    if (d.needed > 0) {
+      hintText.textContent = `เพิ่มผู้เล่นอีก ${d.needed} คน เพื่อเริ่มสุ่มทีม${d.modeLabel}ได้`;
+      hintText.style.display = 'block';
+    } else if (d.courtsPossible < courtCount) {
+      hintText.textContent = `ผู้เล่นพอสำหรับ ${d.courtsPossible} จาก ${courtCount} คอร์ดที่ตั้งไว้`;
+      hintText.style.display = 'block';
+    } else {
+      hintText.style.display = 'none';
+    }
+  }
+
+  function renderResults() {
+    if (!result) {
+      resultsSection.hidden = true;
+      return;
+    }
+    resultsSection.hidden = false;
+    resultsList.innerHTML = result.courts.map((c, i) => `
+      <div class="court-card card-in" style="animation-delay:${i * 90}ms">
+        <div class="court-label">คอร์ด ${c.court}</div>
+        <div class="match-row">
+          <div class="team">${c.teamA.map(p => `<div>${escapeHtml(p.name)}</div>`).join('')}</div>
+          <div class="vs-badge">VS</div>
+          <div class="team">${c.teamB.map(p => `<div>${escapeHtml(p.name)}</div>`).join('')}</div>
         </div>
-    
-    </main>
-    
-    <footer>
-        <p>© 2024 เว็บไซต์ของเราสงวนสิทธิ์ by PPK.</p>
-    </footer>
+      </div>
+    `).join('');
 
-    <script>
-        let currentIndex = 0;
-        const sliderContainer = document.getElementById('courseContainer');
-        let visibleCards = Math.floor(window.innerWidth / (350 + 30)); // Update initial visibleCards
-        let autoSlideInterval;
+    if (result.queue.length > 0) {
+      queueSection.style.display = 'block';
+      queueChips.innerHTML = result.queue.map(p => `<span class="queue-chip">${escapeHtml(p.name)}</span>`).join('');
+    } else {
+      queueSection.style.display = 'none';
+    }
+  }
 
-        function slideLeft() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateSlider();
-            }
-        }
+  function render() {
+    renderSetup();
+    renderPlayers();
+    renderCTA();
+    renderResults();
+  }
 
-        function slideRight() {
-            if (currentIndex < sliderContainer.children.length - visibleCards) {
-                currentIndex++;
-                updateSlider();
-            }
-        }
+  function addPlayers() {
+    const parts = nameInput.value.split(/[,\n]/).map(s => s.trim()).filter(Boolean);
+    if (parts.length === 0) return;
+    players = players.concat(parts.map(name => ({ id: genId(), name })));
+    nameInput.value = '';
+    result = null;
+    render();
+  }
 
-        function updateSlider() {
-            const offset = -currentIndex * (350 + 30); // Card width + margin
-            sliderContainer.style.transform = `translateX(${offset}px)`;
-        }
+  addBtn.addEventListener('click', addPlayers);
+  nameInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); addPlayers(); }
+  });
 
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(() => {
-                slideRight();
-                if (currentIndex >= sliderContainer.children.length - visibleCards) {
-                    currentIndex = 0;
-                    updateSlider();
-                }
-            }, 3000); // Change slide every 3 seconds
-        }
+  chipsEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('.chip-remove');
+    if (!btn) return;
+    players = players.filter(p => p.id !== btn.dataset.id);
+    result = null;
+    render();
+  });
 
-        window.addEventListener('resize', () => {
-            visibleCards = Math.floor(window.innerWidth / (350 + 30));
-            updateSlider();
-        });
+  clearAllBtn.addEventListener('click', () => {
+    players = [];
+    result = null;
+    render();
+  });
 
-        // Start auto slide when page loads
-        startAutoSlide();
-    </script>
+  modeSingleBtn.addEventListener('click', () => { mode = 'single'; result = null; render(); });
+  modeDoubleBtn.addEventListener('click', () => { mode = 'double'; result = null; render(); });
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  courtMinusBtn.addEventListener('click', () => {
+    courtCount = Math.max(1, courtCount - 1);
+    result = null;
+    render();
+  });
+  courtPlusBtn.addEventListener('click', () => {
+    courtCount = Math.min(10, courtCount + 1);
+    result = null;
+    render();
+  });
 
+  function handleRandomize() {
+    const d = derived();
+    if (d.courtsPossible <= 0 || isShuffling) return;
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const run = () => {
+      const runCourts = Math.min(courtCount, d.courtsPossible);
+      const shuffled = shuffleArray(players);
+      let idx = 0;
+      const courts = [];
+      for (let c = 1; c <= runCourts; c++) {
+        const teamA = shuffled.slice(idx, idx + d.playersPerTeam); idx += d.playersPerTeam;
+        const teamB = shuffled.slice(idx, idx + d.playersPerTeam); idx += d.playersPerTeam;
+        courts.push({ court: c, teamA, teamB });
+      }
+      const queue = shuffled.slice(idx);
+      result = { courts, queue };
+      isShuffling = false;
+      shuttleIcon.classList.remove('shuttle-toss');
+      render();
+    };
+
+    if (reduceMotion) {
+      run();
+    } else {
+      isShuffling = true;
+      shuttleIcon.classList.add('shuttle-toss');
+      renderCTA();
+      setTimeout(run, 900);
+    }
+  }
+
+  randomizeBtn.addEventListener('click', handleRandomize);
+  reRandomizeBtn.addEventListener('click', handleRandomize);
+
+  /* -----------------------------------------------------------------
+     Optional: remember the player list on this device between visits.
+     This works in a normal browser tab — just not reliably inside an
+     in-chat preview. To turn it on, uncomment loadState()/saveState()
+     below AND add a call to saveState() as the first line of render().
+  -------------------------------------------------------------------
+  const STORAGE_KEY = 'badminton-team-randomizer';
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ players, mode, courtCount }));
+    } catch (e) {}
+  }
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const data = JSON.parse(raw);
+        if (Array.isArray(data.players)) players = data.players;
+        if (data.mode === 'single' || data.mode === 'double') mode = data.mode;
+        if (typeof data.courtCount === 'number') courtCount = data.courtCount;
+      }
+    } catch (e) {}
+  }
+  loadState();
+  ----------------------------------------------------------------- */
+
+  render();
+})();
+</script>
 </body>
 </html>
